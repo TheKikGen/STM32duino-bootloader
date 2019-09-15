@@ -369,6 +369,23 @@
     /* CRISTAL 12MHz */
     #define XTAL12M     1
 
+#elif defined TARGET_MIDIPLUS4X4
+    #warning "Target MIDIPLUS4X4"
+
+// Flag that this type of board has the custom maple disconnect hardware
+    #define HAS_MIDITECH_HARDWARE 1
+
+    #define LED_BANK         GPIOC
+    #define LED_PIN              9
+    #define LED_ON_STATE     1
+
+    //#define BUTTON_BANK      GPIOB
+    //#define BUTTON_PIN           8
+    //#define BUTTON_PRESSED_STATE 1
+
+    /* USB Disc Pin Setup.   USB DISC is PA8 */
+    #define USB_DISC_BANK         GPIOA
+    #define USB_DISC_PIN              8
 
 #else
     #error "No config for this target"

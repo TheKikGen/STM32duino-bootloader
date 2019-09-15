@@ -136,6 +136,7 @@ hytiny-stm32f103t: begin clean gccversion build_hytiny-stm32f103t sizeafter fini
 dso138: begin clean gccversion build_dso138 sizeafter finished  copy_dso138 end
 gd32f1-generic-pc13: begin clean gccversion build_gd32f1-generic-pc13 sizeafter finished  copy_gd32f1-generic-pc13 end
 gd32f1-frankenmaple: begin clean gccversion build_gd32f1-frankenmaple sizeafter finished  copy_gd32f1-frankenmaple end
+midiplus4x4: begin clean gccversion build_midiplus4x4 sizeafter finished  copy_midiplus4x4 end
 
 build: elf bin lss sym
 
@@ -403,6 +404,16 @@ copy_gd32f1-frankenmaple:
 	cp $(TARGET).bin bootloader_only_binaries/gd32f1_frankenmaple.bin
 	@echo
 
+build_midiplus4x4: TARGETFLAGS= -DTARGET_MIDIPLUS4X4 $(DEFINES)
+	# Set the linker script
+build_midiplus4x4: LDFLAGS +=-T$(ST_LIB)/c_only_md_high_density.ld
+build_midiplus4x4: elf bin lss sym
+copy_midiplus4x4:
+	@echo
+	@echo "Copying to binaries folder"
+	@echo
+	cp $(TARGET).bin bootloader_only_binaries/midiplus4x4_boot20.bin
+	@echo
 
 bin: $(TARGET).bin
 elf: $(TARGET).elf
